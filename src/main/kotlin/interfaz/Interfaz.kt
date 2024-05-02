@@ -1,7 +1,6 @@
 package interfaz
 
 import data.Options
-import data.Product
 
 object Interfaz {
     fun showHomeMain() {
@@ -30,13 +29,16 @@ object Interfaz {
 
     fun showListProduct(objects: List<Any>, option: Options) {
         when(option){
-            Options.LIBRO -> println("--------------------Libros--------------------")
-            Options.MUSICA -> println("--------------------Música--------------------")
-            Options.HISTORIAL -> println("-----------------Historial de Compra-----------------")
+            Options.LIBRO -> println("\n---------------------------- Libros ----------------------------\n")
+            Options.MUSICA -> println("\n---------------------------- Música ----------------------------\n")
+            Options.HISTORIAL -> println("\n---------------------- Historial de Compras ----------------------\n")
             else -> print("Desconocido")
         }
         for((i, element) in objects.withIndex())
             println("${i+1} --> ${element.toString()}")
 
+        println("0 --> Volver")
+        print("\nSeleccione el nro de libro a comprar--> ")
     }
+
 }
