@@ -2,6 +2,7 @@ package repositories
 
 import data.Product
 import data.Purchase
+import data.User
 
 object PurchaseRepository {
 
@@ -20,7 +21,7 @@ object PurchaseRepository {
         purchases.add(Purchase(10L, 1510L, 5L, 150.00, "2023/01/01"))
     }
 
-    fun processPurchase(product: Product) {
+    fun processPurchase(product: Product, user: User?) {
         println("Procesando compra de $product")
     }
 
