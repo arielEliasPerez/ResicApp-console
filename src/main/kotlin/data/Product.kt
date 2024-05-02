@@ -11,4 +11,19 @@ data class Product(
     val price: Double,
     val logo: String,
     val author: String
-)
+
+
+) {
+    override fun toString(): String {
+        return """'$name'
+            clasificación:       $clasification
+            fecha lanzamiento:  '$releasedDate'
+            categoría:          '$category'
+            stars:               $stars
+            precio:              $price
+            logo:                '$logo'
+            autor:               '$author'
+            
+        """.trimMargin()
+    }
+}

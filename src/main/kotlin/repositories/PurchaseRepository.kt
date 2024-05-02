@@ -1,5 +1,6 @@
 package repositories
 
+import data.Product
 import data.Purchase
 
 object PurchaseRepository {
@@ -19,7 +20,9 @@ object PurchaseRepository {
         purchases.add(Purchase(10L, 1510L, 5L, 150.00, "2023/01/01"))
     }
 
-    fun processPurchase(){}
+    fun processPurchase(product: Product) {
+        println("Procesando compra de $product")
+    }
 
     fun add(purchase: Purchase) {
         //TODO Implementar solucion para agregar una nueva compra
@@ -27,7 +30,8 @@ object PurchaseRepository {
     }
 
     fun get() : List<Purchase> {
-        return emptyList() //TODO Implementar solucion para obtener todas las compras
+        //return emptyList() //TODO Implementar solucion para obtener todas las compras
+        return this.purchases
     }
 
 }

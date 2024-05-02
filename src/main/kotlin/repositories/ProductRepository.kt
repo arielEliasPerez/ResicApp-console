@@ -162,11 +162,14 @@ object ProductRepository {
     }
 
     fun get() : List<Product> {
-        return emptyList() //TODO Implementar solucion para obtener todos los productos
+        //return emptyList() //TODO Implementar solucion para obtener todos los productos
+        return this.products
     }
 
     fun getById(id: Long) : Product {
         return products[0] //TODO Implementar solucion para obtener el paquete turistico solicitado
+
     }
+
 
 }
