@@ -12,7 +12,7 @@ object UserRepository {
     }
 
     fun login() : User? {
-        return null //TODO Implementar solucion para validar e iniciar sesion un usuario
+        return users[0] //TODO Implementar solucion para validar e iniciar sesion un usuario
     }
 
 }

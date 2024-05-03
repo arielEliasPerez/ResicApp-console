@@ -9,12 +9,11 @@ data class Purchase(
 
 ) {
     override fun toString(): String {
-        return """
-            ID Compra:      $id
-            ID usuario:     $userId
-            ID Producto:    $productId
-            Monto:          $amount
-            Fecha de op:    '$createdDate'
+        return """ID Compra:   $id
+                ID usuario:     $userId
+                ID Producto:    $productId
+                Monto:          $amount
+                Fecha de op:    '$createdDate'
             """.trimIndent()
     }
 }
