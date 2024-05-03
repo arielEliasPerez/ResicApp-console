@@ -27,29 +27,35 @@ object ResicSystem {
 
     fun processOption(option: Options){
         when(option){
-            Options.LIBRO -> buyBook()
-            Options.MUSICA -> buyDisc()
-            Options.HISTORIAL -> seeHistory()
-            Options.SALIR -> println("\nAdios ${this.user?.name}!!!")
+            Options.LIBRO -> viewAndBuyBook()
+            Options.MUSICA -> viewAndBuyDisc()
+            Options.HISTORIAL -> viewPurchaseHistory()
+            Options.SALIR -> println("\nHasta luego ${this.user?.name}!!!")
         }
     }
-    private fun buyBook(){
-        buy(ProductType.BOOK, this.books!!)
+
+    private fun viewAndBuyBook(){
+        val option = viewCatalog(ProductType.BOOK, this.books!!)
+        if(option != 0) buy(this.books!![option-1])
     }
 
-    private fun buyDisc(){
-        buy(ProductType.DISC, this.discs!!)
+    private fun viewAndBuyDisc(){
+        val option = viewCatalog(ProductType.DISC, this.discs!!)
+        if(option != 0) buy(this.discs!![option-1])
     }
 
-    private fun buy(productType: ProductType, products: List<Product>){
+    private fun viewCatalog(productType: ProductType, products: List<Product>): Int{
         Interfaz.showListProduct(products, productType)
         val option = Interfaz.validateOption(lower = 0, upper = products.size)
 
-        if(option == 0) return   //Volver atrás
-        PurchaseRepository.processPurchase(products[option - 1], this.user)
+        return option
     }
 
-    private fun seeHistory(){
+    private fun buy(product: Product){
+        PurchaseRepository.processPurchase(product, this.user)
+    }
+
+    private fun viewPurchaseHistory(){
         //val historyBuys: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user?.id }
 
     }
