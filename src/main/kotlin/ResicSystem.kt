@@ -30,7 +30,7 @@ object ResicSystem {
             Options.LIBRO -> viewAndBuyBook()
             Options.MUSICA -> viewAndBuyDisc()
             Options.HISTORIAL -> viewPurchaseHistory()
-            Options.SALIR -> println("\nHasta luego ${this.user?.name}!!!")
+            Options.SALIR -> Interfaz.sayGoodBye(this.user!!.name)
         }
     }
 
@@ -52,11 +52,23 @@ object ResicSystem {
     }
 
     private fun buy(product: Product){
-        PurchaseRepository.processPurchase(product, this.user)
+        Interfaz.showPurchaseProcess(this.user!!, product)
+
+        if(!Interfaz.confirmPurchase()) return   //No confirma compra
+
+        val successfulPurchase = PurchaseRepository.processPurchase(product, this.user)
+
+        if(successfulPurchase){
+            Interfaz.showSuccessfulPurchase()
+            viewPurchaseHistory()
+        }else
+            Interfaz.showWrongPurchase()
     }
 
     private fun viewPurchaseHistory(){
-        //val historyBuys: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user?.id }
+        val historyBuys: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user?.id }
+        // añadir proceso para filtrar productos comprados
 
+        Interfaz.showPurchaseHistoryList(historyBuys)
     }
 }

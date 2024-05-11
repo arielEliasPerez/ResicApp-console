@@ -1,6 +1,5 @@
 import data.Options
 
-
 fun main(args: Array<String>) {
     ResicSystem.initLogin()
 

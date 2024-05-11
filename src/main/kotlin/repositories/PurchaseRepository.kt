@@ -21,8 +21,9 @@ object PurchaseRepository {
         purchases.add(Purchase(10L, 1510L, 5L, 150.00, "2023/01/01"))
     }
 
-    fun processPurchase(product: Product, user: User?) {
+    fun processPurchase(product: Product, user: User?): Boolean {
         println("Procesando compra de $product")
+        return true
     }
 
     fun add(purchase: Purchase) {
@@ -31,7 +32,6 @@ object PurchaseRepository {
     }
 
     fun get() : List<Purchase> {
-        //return emptyList() //TODO Implementar solucion para obtener todas las compras
         return this.purchases
     }
 
