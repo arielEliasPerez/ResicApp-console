@@ -11,7 +11,22 @@ object ResicSystem {
     private var discs: List<Product>? = null
 
     fun initLogin(){
-        this.user = UserRepository.login()!!
+        Interfaz.showWelcome()
+        var userName = Interfaz.requestUserName()
+        var password = Interfaz.requestPassword()
+        this.user = UserRepository.login(userName, password)
+
+        while(user == null){
+            Interfaz.incorrectUser()
+            val retry = Interfaz.confirmRetry()
+
+            if(!retry) throw Exception("\n¡Fin del Programa!\n")
+
+            userName = Interfaz.requestUserName()
+            password = Interfaz.requestPassword()
+            this.user = UserRepository.login(userName, password)
+        }
+
     }
 
     fun filterProducts(){

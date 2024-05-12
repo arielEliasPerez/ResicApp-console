@@ -11,8 +11,9 @@ object UserRepository {
         users.add(User(1510L, "Diegote", "@12345", "Diego", "Gonzalez", 120000.0, "2018/04/15"))
     }
 
-    fun login() : User? {
-        return users[0] //TODO Implementar solucion para validar e iniciar sesion un usuario
+    fun login(nickName: String, password: String) : User? {
+        val user = this.users.find { nickName.equals(it.nickName, true) && password == it.password }
+        return user
     }
 
 }

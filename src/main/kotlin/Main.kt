@@ -1,7 +1,13 @@
 import data.Options
 
 fun main(args: Array<String>) {
-    ResicSystem.initLogin()
+    try{
+        ResicSystem.initLogin()
+    }catch (e: Exception){
+        println(e.message)
+        return
+    }
+
 
     ResicSystem.filterProducts()
 

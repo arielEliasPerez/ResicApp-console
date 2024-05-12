@@ -10,17 +10,16 @@ object Interfaz {
     fun showHomeMain() {
         println("""
             
-            
-            ***************************************************
-            ******************** RESIC APP ********************
-            ***************************************************
+            ╔═══════════════════════════════════════════════════╗
+            ║                 ¡¡¡ RESIC APP !!!                 ║
+            ╚═══════════════════════════════════════════════════╝
             
         """.trimIndent())
 
         print("""
             Elija una opción:
                 1 --> Ver catálogo de Libros
-                2 --> Ver catálogo de Albumes
+                2 --> Ver catálogo de Música
                 3 --> Ver historial de compras
                 0 --> Salir
             
@@ -72,7 +71,7 @@ object Interfaz {
     fun confirmPurchase():Boolean{
         println("Confirmar comprar?")
         print("""
-            y --> Yes
+            s --> Si
             n --> No
             
             --> 
@@ -80,21 +79,21 @@ object Interfaz {
 
         var answer = readln().first()
 
-        while(!answer.equals('y', true) && !answer.equals('n', true)){
+        while(!answer.equals('s', true) && !answer.equals('n', true)){
             print("¡Respuesta erronea! Intente otra vez -->")
             answer = readln()[0]
         }
 
-        return answer.equals('y', true)
+        return answer.equals('s', true)
     }
 
     fun showSuccessfulPurchase() {
 
         println("""
             
-            *****************************************
-            ****      ¡¡¡COMPRA EXISTOSA!!!      ****
-            *****************************************
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 
+            ░░░░░░░░░░░░░          ¡¡¡COMPRA EXISTOSA!!!        ░░░░░░░░░░░░
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 
             
             Presione enter para continuar...
         """.trimIndent())
@@ -140,5 +139,46 @@ object Interfaz {
 
         println("\nPresione enter para volver al Menú Principal...")
         readlnOrNull()
+    }
+
+    fun showWelcome() {
+        println("""
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+                          ¡¡¡ BIENVENIDO !!!
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+            
+        """.trimIndent())
+    }
+
+    fun requestUserName(): String {
+        print("► Por favor ingrese su NickName: ")
+        return readln()
+    }
+
+    fun requestPassword(): String {
+        print("\n► Por favor ingrese la contraseña: ")
+        return readln()
+    }
+
+    fun incorrectUser() {
+        println("\n\nEl NickName o la contraseña ingresada es INCORRECTA!!\n")
+    }
+
+    fun confirmRetry(): Boolean {
+        println("Desea intentarlo otra vez?")
+        print("""
+            s --> Si
+            n --> No
+            
+            -->
+        """.trimIndent())
+        var answer = readln().first()
+
+        while(!answer.equals('s', true) && !answer.equals('n', true)){
+            print("¡Respuesta erronea! Intente otra vez --> ")
+            answer = readln()[0]
+        }
+        println("")
+        return answer.equals('s', true)
     }
 }
