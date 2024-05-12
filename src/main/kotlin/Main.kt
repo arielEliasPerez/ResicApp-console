@@ -11,5 +11,4 @@ fun main(args: Array<String>) {
         ResicSystem.processOption(option)
 
     }while(option != Options.SALIR)
-
 }

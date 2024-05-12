@@ -1,8 +1,9 @@
 package repositories
 
-import data.Product
 import data.Purchase
 import data.User
+import prices.PriceCalculator
+import java.time.LocalDate
 
 object PurchaseRepository {
 
@@ -21,13 +22,26 @@ object PurchaseRepository {
         purchases.add(Purchase(10L, 1510L, 5L, 150.00, "2023/01/01"))
     }
 
-    fun processPurchase(product: Product, user: User?): Boolean {
-        println("Procesando compra de $product")
+    fun processPurchase(priceProduct: PriceCalculator, user: User?): Boolean {
+        val totalPrice = priceProduct.calculateTotalPrice()
+
+        if(totalPrice>user!!.money) return false
+
+        val idPurchase = (this.get().size + 1).toLong()
+        val userId: Long = user.id
+        val productId: Long = priceProduct.productId
+        val createdData = "${LocalDate.now().year}/${LocalDate.now().month.value}/${LocalDate.now().dayOfMonth}"
+
+        val purchase = Purchase(idPurchase, userId, productId, totalPrice, createdData)
+
+        user.money -= totalPrice
+        this.add(purchase)
+
         return true
     }
 
-    fun add(purchase: Purchase) {
-        //TODO Implementar solucion para agregar una nueva compra
+    private fun add(purchase: Purchase) {
+        this.purchases.add(0, purchase)
 
     }
 

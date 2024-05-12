@@ -4,12 +4,19 @@ import data.Product
 import data.ProductType
 import data.Purchase
 import data.User
+import prices.PriceCalculator
 
 object Interfaz {
     fun showHomeMain() {
-        println("\n\n***************************************************")
-        println("******************** RESIC APP ********************")
-        println("***************************************************\n")
+        println("""
+            
+            
+            ***************************************************
+            ******************** RESIC APP ********************
+            ***************************************************
+            
+        """.trimIndent())
+
         print("""
             Elija una opción:
                 1 --> Ver catálogo de Libros
@@ -45,18 +52,19 @@ object Interfaz {
         print("\nSeleccione el nro de libro a comprar--> ")
     }
 
-    fun showPurchaseProcess(user: User, product: Product) {
+    fun showPurchaseProcess(user: User, product: Product, productPrice: PriceCalculator) {
         println("\n\n---------------------------------- PROCESO DE COMPRA ----------------------------------\n")
         println("""
             Saldo de ${user.name}:  ${user.money}
             
             Producto a comprar:
                 ${product.name}
-                    -Autor:               ${product.author}
-                    -Precio:              ${product.price}
-                    -Comisión adicional:  producto.comision
+                    - Autor:                    ${product.author}
+                    - Clasificación:            ${product.clasification}
+                    - Precio:                   $${productPrice.originPrice}
+                    - Comisión adicional:       $${productPrice.calculateCommissionPrice()}
                    
-                   -Monto total:          producto.calcularPrecioTotal
+                    - Monto total:              $${productPrice.calculateTotalPrice()}
                    
         """.trimIndent())
     }
@@ -81,15 +89,23 @@ object Interfaz {
     }
 
     fun showSuccessfulPurchase() {
-        println("¡¡¡COMPRA EXISTOSA!!!")
-        println("Presione enter para continuar")
+
+        println("""
+            
+            *****************************************
+            ****      ¡¡¡COMPRA EXISTOSA!!!      ****
+            *****************************************
+            
+            Presione enter para continuar...
+        """.trimIndent())
+
         readlnOrNull()
     }
 
     fun showWrongPurchase() {
         println("¡SALDO INSUFICIENTE!")
         println("No se pudo realizar la compra.")
-        println("Presione enter para continuar")
+        println("\nPresione enter para continuar...")
         readlnOrNull()
     }
 
@@ -106,16 +122,16 @@ object Interfaz {
             if (product != null) {
                 println("""
                         ${product.name}
-                            - Fecha de compra:      ${purchase.createdDate}
-                            - Tipo de Producto:     ${product.type}
-                            - Categoría:            ${product.category}
-                            - Autor del Producto:   ${product.author}
-                            - Logo del Producto:    ${product.logo}
-                            - Clasificación:        ${product.clasification}
-                            - Precio del producto:  ${product.price}
-                            - Comisión adicional:   calcularComision
+                            - Fecha de compra:              ${purchase.createdDate}
+                            - Tipo de Producto:             ${product.type}
+                            - Categoría:                    ${product.category}
+                            - Autor del Producto:           ${product.author}
+                            - Logo del Producto:            ${product.logo}
+                            - Clasificación:                ${product.clasification}
+                            - Precio del producto:          $${product.price}
+                            - Monto Comisión adicional:     $${purchase.amount-product.price}
                             
-                            - Monto total pagado:   ${purchase.amount}
+                            - Monto total pagado:           $${purchase.amount}
                             
                         --------------------------------------------------------------
                     """.trimIndent())
