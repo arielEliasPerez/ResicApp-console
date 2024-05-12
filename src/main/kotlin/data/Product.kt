@@ -11,8 +11,6 @@ data class Product(
     val price: Double,
     val logo: String,
     val author: String
-
-
 ) {
     override fun toString(): String {
         return """'$name'

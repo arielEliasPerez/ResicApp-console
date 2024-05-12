@@ -1,5 +1,6 @@
 import data.*
 import interfaz.Interfaz
+import prices.*
 import repositories.ProductRepository
 import repositories.PurchaseRepository
 import repositories.UserRepository
@@ -52,11 +53,18 @@ object ResicSystem {
     }
 
     private fun buy(product: Product){
-        Interfaz.showPurchaseProcess(this.user!!, product)
+        val productPrice: PriceCalculator = when(product.clasification){
+            ProductClasification.GOLD -> GoldPrice(product.id, product.price)
+            ProductClasification.SILVER -> SilverPrice(product.id, product.price)
+            ProductClasification.PLATINUM -> PlatinumPrice(product.id, product.price)
+            else -> BronzePrice(product.id, product.price)
+        }
+
+        Interfaz.showPurchaseProcess(this.user!!, product, productPrice)
 
         if(!Interfaz.confirmPurchase()) return   //No confirma compra
 
-        val successfulPurchase = PurchaseRepository.processPurchase(product, this.user)
+        val successfulPurchase = PurchaseRepository.processPurchase(productPrice, this.user)
 
         if(successfulPurchase){
             Interfaz.showSuccessfulPurchase()
