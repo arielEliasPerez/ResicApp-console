@@ -26,14 +26,26 @@ object HomeMainUI {
     }
 
     fun validateOption(lower: Int, upper: Int): Int {
-        var option: Int = readln().toInt()
+        var option: Int = enterAnInteger()
+        //var option: Int = readln().toInt()
 
         while (option !in lower..upper){
             print("¡Opción inválida! Intente otra vez --> ")
-            option = readln().toInt()
+            option = enterAnInteger()
         }
 
         return option
+    }
+
+    private fun enterAnInteger(): Int {
+        while (true) {
+            try {
+                return readln().toInt()
+            } catch (e: NumberFormatException) {
+                print("¡Opción inválida! Intente otra vez:\n-->")
+            }
+
+        }
     }
 
     fun showListProduct(objects: List<Any>, productType: ProductType) {

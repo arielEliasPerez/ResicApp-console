@@ -36,7 +36,7 @@ object ResicSystem {
 
     fun homeMain(): Options{
         HomeMainUI.showHomeMain()
-        val option = Options.values()[HomeMainUI.validateOption(lower = 0, upper = 3)]
+        val option = Options.values()[HomeMainUI.validateOption(lower = 0, upper = Options.values().size - 1)]
 
         return option
     }
@@ -88,10 +88,10 @@ object ResicSystem {
             PurchaseUI.showWrongPurchase()
     }
 
+
     private fun viewPurchaseHistory(){
         val historyBuys: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user?.id }
 
         HomeMainUI.showPurchaseHistoryList(historyBuys, ProductRepository.get())
     }
-
 }
