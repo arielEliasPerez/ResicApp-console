@@ -24,7 +24,7 @@ La empresa proporciona las siguientes reglas para calcular el monto total a paga
 
 
 ### Notas
-- No necesita implementar una interfaz grafica
+- No necesita implementar una consoleUI grafica
 - No necesita hacer uso de una base de datos
 - Todas las reglas que la empresa usa para calcular el costo total fueron dadas anteriormente. No necesita aplicar ninguna otra regla
 

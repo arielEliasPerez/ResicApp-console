@@ -14,13 +14,13 @@ data class Product(
 ) {
     override fun toString(): String {
         return """'$name'
-            clasificación:       $clasification
-            fecha lanzamiento:  '$releasedDate'
-            categoría:          '$category'
-            stars:               $stars
-            precio:              $price
-            logo:                '$logo'
-            autor:               '$author'
+            clasificación:          $clasification
+            fecha lanzamiento:      $releasedDate
+            categoría:              $category
+            stars:                  $stars
+            precio:                 $price
+            logo:                   '$logo'
+            autor:                  $author
             
         """.trimMargin()
     }

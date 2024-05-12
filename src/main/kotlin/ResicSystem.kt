@@ -1,5 +1,5 @@
 import data.*
-import interfaz.Interfaz
+import consoleUI.*
 import prices.*
 import repositories.ProductRepository
 import repositories.PurchaseRepository
@@ -11,19 +11,19 @@ object ResicSystem {
     private var discs: List<Product>? = null
 
     fun initLogin(){
-        Interfaz.showWelcome()
-        var userName = Interfaz.requestUserName()
-        var password = Interfaz.requestPassword()
+        LoginUI.showWelcome()
+        var userName = LoginUI.requestUserName()
+        var password = LoginUI.requestPassword()
         this.user = UserRepository.login(userName, password)
 
         while(user == null){
-            Interfaz.incorrectUser()
-            val retry = Interfaz.confirmRetry()
+            LoginUI.incorrectUser()
+            val retry = LoginUI.confirmRetry()
 
             if(!retry) throw Exception("\n¡Fin del Programa!\n")
 
-            userName = Interfaz.requestUserName()
-            password = Interfaz.requestPassword()
+            userName = LoginUI.requestUserName()
+            password = LoginUI.requestPassword()
             this.user = UserRepository.login(userName, password)
         }
 
@@ -35,8 +35,8 @@ object ResicSystem {
     }
 
     fun homeMain(): Options{
-        Interfaz.showHomeMain()
-        val option = Options.values()[Interfaz.validateOption(lower = 0, upper = 3)]
+        HomeMainUI.showHomeMain()
+        val option = Options.values()[HomeMainUI.validateOption(lower = 0, upper = 3)]
 
         return option
     }
@@ -46,7 +46,7 @@ object ResicSystem {
             Options.LIBRO -> viewAndBuyBook()
             Options.MUSICA -> viewAndBuyDisc()
             Options.HISTORIAL -> viewPurchaseHistory()
-            Options.SALIR -> Interfaz.sayGoodBye(this.user!!.name)
+            Options.SALIR -> HomeMainUI.sayGoodBye(this.user!!.name)
         }
     }
 
@@ -61,8 +61,8 @@ object ResicSystem {
     }
 
     private fun viewCatalog(productType: ProductType, products: List<Product>): Int{
-        Interfaz.showListProduct(products, productType)
-        val option = Interfaz.validateOption(lower = 0, upper = products.size)
+        HomeMainUI.showListProduct(products, productType)
+        val option = HomeMainUI.validateOption(lower = 0, upper = products.size)
 
         return option
     }
@@ -75,23 +75,23 @@ object ResicSystem {
             else -> BronzePrice(product.id, product.price)
         }
 
-        Interfaz.showPurchaseProcess(this.user!!, product, productPrice)
+        PurchaseUI.showPurchaseProcess(this.user!!, product, productPrice)
 
-        if(!Interfaz.confirmPurchase()) return   //No confirma compra
+        if(!PurchaseUI.confirmPurchase()) return   //No confirma compra
 
         val successfulPurchase = PurchaseRepository.processPurchase(productPrice, this.user)
 
         if(successfulPurchase){
-            Interfaz.showSuccessfulPurchase()
+            PurchaseUI.showSuccessfulPurchase()
             viewPurchaseHistory()
         }else
-            Interfaz.showWrongPurchase()
+            PurchaseUI.showWrongPurchase()
     }
 
     private fun viewPurchaseHistory(){
         val historyBuys: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user?.id }
 
-        Interfaz.showPurchaseHistoryList(historyBuys, ProductRepository.get())
+        HomeMainUI.showPurchaseHistoryList(historyBuys, ProductRepository.get())
     }
 
 }
