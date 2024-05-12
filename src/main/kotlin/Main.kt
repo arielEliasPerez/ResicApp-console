@@ -8,7 +8,6 @@ fun main(args: Array<String>) {
         return
     }
 
-
     ResicSystem.filterProducts()
 
     do{

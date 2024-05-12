@@ -54,14 +54,14 @@ object Interfaz {
     fun showPurchaseProcess(user: User, product: Product, productPrice: PriceCalculator) {
         println("\n\n---------------------------------- PROCESO DE COMPRA ----------------------------------\n")
         println("""
-            Saldo de ${user.name}:  ${user.money}
+            Saldo de ${user.name}:              $${user.money}
             
             Producto a comprar:
                 ${product.name}
                     - Autor:                    ${product.author}
                     - Clasificación:            ${product.clasification}
                     - Precio:                   $${productPrice.originPrice}
-                    - Comisión adicional:       $${productPrice.calculateCommissionPrice()}
+                    - Comisión adicional:       $${productPrice.calculateTotalPrice()-product.price}
                    
                     - Monto total:              $${productPrice.calculateTotalPrice()}
                    
@@ -139,6 +139,14 @@ object Interfaz {
 
         println("\nPresione enter para volver al Menú Principal...")
         readlnOrNull()
+
+        clearBuffer()
+    }
+
+    private fun clearBuffer() {
+        while (System.`in`.available() > 0) {
+            System.`in`.read()
+        }
     }
 
     fun showWelcome() {

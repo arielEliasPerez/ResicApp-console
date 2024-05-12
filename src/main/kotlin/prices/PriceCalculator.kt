@@ -5,5 +5,5 @@ abstract class PriceCalculator (val productId: Long, val originPrice: Double){
 
     abstract fun calculateTotalPrice(): Double
 
-    open val calculateCommissionPrice = {commission * originPrice/100}
+    protected val calculateCommissionPrice = {commission * originPrice/100}
 }

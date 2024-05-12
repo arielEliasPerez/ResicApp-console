@@ -13,16 +13,12 @@ class SilverPrice(productID: Long, originPrice: Double) : PriceCalculator(produc
         return originPrice + commissionPrice
     }
 
-    private fun isValidTime(): Boolean {
-        val minimumHours = 15
-        val maximumHours = 22
-        val minimumMinutes = 0
-        val maximumMinutes = 30
-        val currentHours = LocalTime.now().hour
-        val currentMinutes = LocalTime.now().minute
 
-        val isTimeValid = currentHours in minimumHours..maximumHours &&
-                currentMinutes in minimumMinutes..maximumMinutes
+    private fun isValidTime(): Boolean {
+        val currentTime = LocalTime.now()
+        val minimumTime =LocalTime.of(15, 0)
+        val maximumTime =LocalTime.of(22, 30)
+        val isTimeValid = currentTime in minimumTime .. maximumTime
 
         return isTimeValid
     }
