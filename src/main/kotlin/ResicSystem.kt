@@ -67,8 +67,8 @@ object ResicSystem {
 
     private fun viewPurchaseHistory(){
         val historyBuys: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user?.id }
-        // añadir proceso para filtrar productos comprados
 
-        Interfaz.showPurchaseHistoryList(historyBuys)
+        Interfaz.showPurchaseHistoryList(historyBuys, ProductRepository.get())
     }
+
 }

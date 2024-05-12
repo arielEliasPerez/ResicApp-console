@@ -2,6 +2,7 @@ package interfaz
 
 import data.Product
 import data.ProductType
+import data.Purchase
 import data.User
 
 object Interfaz {
@@ -42,14 +43,6 @@ object Interfaz {
 
         println("0 --> Volver")
         print("\nSeleccione el nro de libro a comprar--> ")
-    }
-
-    fun showPurchaseHistoryList(objects: List<Any>) {
-        println("\n\n------------------------------- HISTORIAL DE COMPRAS -------------------------------\n")
-        //seguir editando este método
-        objects.map { println(it) }
-        println("\nPresione enter para volver al Menú Principal...")
-        readlnOrNull()
     }
 
     fun showPurchaseProcess(user: User, product: Product) {
@@ -103,5 +96,33 @@ object Interfaz {
     fun sayGoodBye(name: String) {
         println("\nHasta luego $name!!!")
         println("\n***************************************************")
+    }
+
+    fun showPurchaseHistoryList(purchases: List<Purchase>, products: List<Product>) {
+        println("\n\n------------------------------->> HISTORIAL DE COMPRAS <<-------------------------------\n")
+
+        for(purchase in purchases){
+            val product = products.find { it.id == purchase.productId }
+            if (product != null) {
+                println("""
+                        ${product.name}
+                            - Fecha de compra:      ${purchase.createdDate}
+                            - Tipo de Producto:     ${product.type}
+                            - Categoría:            ${product.category}
+                            - Autor del Producto:   ${product.author}
+                            - Logo del Producto:    ${product.logo}
+                            - Clasificación:        ${product.clasification}
+                            - Precio del producto:  ${product.price}
+                            - Comisión adicional:   calcularComision
+                            
+                            - Monto total pagado:   ${purchase.amount}
+                            
+                        --------------------------------------------------------------
+                    """.trimIndent())
+            }
+        }
+
+        println("\nPresione enter para volver al Menú Principal...")
+        readlnOrNull()
     }
 }
