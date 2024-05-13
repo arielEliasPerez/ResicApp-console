@@ -81,7 +81,7 @@ object ResicSystem {
 
         if (!PurchaseUI.confirmPurchase()) return   //No confirma compra
 
-        val successfulPurchase = PurchaseRepository.processPurchase(productPrice, this.user)
+        val successfulPurchase = PurchaseRepository.processPurchase(productPrice, this.user!!)
 
         if (successfulPurchase) {
             PurchaseUI.showSuccessfulPurchase()

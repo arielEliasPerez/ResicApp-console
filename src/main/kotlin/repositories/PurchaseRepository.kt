@@ -22,10 +22,10 @@ object PurchaseRepository {
         purchases.add(Purchase(10L, 1510L, 5L, 150.00, "2023/01/01"))
     }
 
-    fun processPurchase(priceProduct: PriceCalculator, user: User?): Boolean {
+    fun processPurchase(priceProduct: PriceCalculator, user: User): Boolean {
         val totalPrice = priceProduct.calculateTotalPrice()
 
-        if (totalPrice > user!!.money) return false
+        if (totalPrice > user.money) return false
 
         val idPurchase = (this.get().size + 1).toLong()
         val userId: Long = user.id
@@ -34,7 +34,7 @@ object PurchaseRepository {
 
         val purchase = Purchase(idPurchase, userId, productId, totalPrice, createdData)
 
-        user.money.minus(totalPrice)
+        user.money -= totalPrice
         this.add(purchase)
 
         return true
@@ -42,7 +42,6 @@ object PurchaseRepository {
 
     private fun add(purchase: Purchase) {
         this.purchases.add(0, purchase)
-
     }
 
     fun get(): List<Purchase> {

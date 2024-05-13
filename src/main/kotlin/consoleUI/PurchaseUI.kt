@@ -61,16 +61,17 @@ object PurchaseUI {
         clearBuffer()
     }
 
-    private fun clearBuffer() {
-        while (System.`in`.available() > 0) {
-            System.`in`.read()
-        }
-    }
-
     fun showWrongPurchase() {
         println("¡SALDO INSUFICIENTE!")
         println("No se pudo realizar la compra.")
         println("\nPresione enter para continuar...")
         readlnOrNull()
+        clearBuffer()
+    }
+
+    private fun clearBuffer() {
+        while (System.`in`.available() > 0) {
+            System.`in`.read()
+        }
     }
 }
