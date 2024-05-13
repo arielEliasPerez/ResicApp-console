@@ -13,7 +13,7 @@ object ProductRepository {
             Product(
                 1L,
                 "El Principito",
-                ProductType.BOOK ,
+                ProductType.BOOK,
                 ProductClasification.SILVER,
                 "1943/04/06",
                 "Literatura infantil",
@@ -28,7 +28,7 @@ object ProductRepository {
             Product(
                 2L,
                 "Shingeki no Kyojin",
-                ProductType.BOOK ,
+                ProductType.BOOK,
                 ProductClasification.PLATINUM,
                 "2009/09/09",
                 "Manga",
@@ -43,7 +43,7 @@ object ProductRepository {
             Product(
                 3L,
                 "Abbey Road",
-                ProductType.DISC ,
+                ProductType.DISC,
                 ProductClasification.GOLD,
                 "1969/09/24",
                 "Rock",
@@ -58,7 +58,7 @@ object ProductRepository {
             Product(
                 4L,
                 "Los arboles mueren de pie",
-                ProductType.BOOK ,
+                ProductType.BOOK,
                 ProductClasification.BRONZE,
                 "1949/04/01",
                 "Obra teatral",
@@ -73,7 +73,7 @@ object ProductRepository {
             Product(
                 5L,
                 "Dark Side of the Moon",
-                ProductType.DISC ,
+                ProductType.DISC,
                 ProductClasification.PLATINUM,
                 "1973/03/01",
                 "Progressive Rock",
@@ -88,7 +88,7 @@ object ProductRepository {
             Product(
                 6L,
                 "Caravana",
-                ProductType.DISC ,
+                ProductType.DISC,
                 ProductClasification.GOLD,
                 "2020/10/23",
                 "Hip Hop",
@@ -103,7 +103,7 @@ object ProductRepository {
             Product(
                 7L,
                 "Animal",
-                ProductType.DISC ,
+                ProductType.DISC,
                 ProductClasification.SILVER,
                 "2021/07/16",
                 "Reggaeton",
@@ -161,13 +161,12 @@ object ProductRepository {
 
     }
 
-    fun get() : List<Product> {
-        //return emptyList() //TODO Implementar solucion para obtener todos los productos
+    fun get(): List<Product> {
         return this.products
     }
 
-    fun getById(id: Long) : Product {
-        return products[0] //TODO Implementar solucion para obtener el paquete turistico solicitado
+    fun getById(id: Long): Product {
+        return this.products[id.toInt()]
 
     }
 

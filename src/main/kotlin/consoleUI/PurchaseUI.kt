@@ -6,35 +6,39 @@ import prices.PriceCalculator
 
 object PurchaseUI {
     fun showPurchaseProcess(user: User, product: Product, productPrice: PriceCalculator) {
-        println("\n\n---------------------------------- PROCESO DE COMPRA ----------------------------------\n")
-        println("""
-            Saldo de ${user.name}:              $${user.money}
+        println("\n\n====================================================== PROCESO DE COMPRA ======================================================\n")
+        println(
+            """
+            Saldo de ${user.name}:              $ ${user.money}
             
             Producto a comprar:
                 ${product.name}
                     - Autor:                    ${product.author}
                     - Clasificación:            ${product.clasification}
-                    - Precio:                   $${productPrice.originPrice}
-                    - Comisión adicional:       $${productPrice.calculateTotalPrice()-product.price}
+                    - Precio:                   $ ${productPrice.originPrice}
+                    - Comisión adicional:       $ ${productPrice.calculateTotalPrice().minus(product.price)}
                    
-                    - Monto total:              $${productPrice.calculateTotalPrice()}
+                    - Monto total:              $ ${productPrice.calculateTotalPrice()}
                    
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
-    fun confirmPurchase():Boolean{
+    fun confirmPurchase(): Boolean {
         println("Confirmar comprar?")
-        print("""
+        print(
+            """
             s --> Si
             n --> No
             
             --> 
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         var answer = readln().first()
 
-        while(!answer.equals('s', true) && !answer.equals('n', true)){
-            print("¡Respuesta erronea! Intente otra vez -->")
+        while (!answer.equals('s', true) && !answer.equals('n', true)) {
+            print("¡Respuesta erronea! Intente otra vez --> ")
             answer = readln()[0]
         }
 
@@ -42,14 +46,16 @@ object PurchaseUI {
     }
 
     fun showSuccessfulPurchase() {
-        println("""
+        println(
+            """
             
             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 
             ░░░░░░░░░░░░░          ¡¡¡COMPRA EXISTOSA!!!        ░░░░░░░░░░░░
             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 
             
             Presione enter para continuar...
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         readlnOrNull()
         clearBuffer()

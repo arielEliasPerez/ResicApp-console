@@ -25,7 +25,7 @@ object PurchaseRepository {
     fun processPurchase(priceProduct: PriceCalculator, user: User?): Boolean {
         val totalPrice = priceProduct.calculateTotalPrice()
 
-        if(totalPrice>user!!.money) return false
+        if (totalPrice > user!!.money) return false
 
         val idPurchase = (this.get().size + 1).toLong()
         val userId: Long = user.id
@@ -34,7 +34,7 @@ object PurchaseRepository {
 
         val purchase = Purchase(idPurchase, userId, productId, totalPrice, createdData)
 
-        user.money -= totalPrice
+        user.money.minus(totalPrice)
         this.add(purchase)
 
         return true
@@ -45,7 +45,7 @@ object PurchaseRepository {
 
     }
 
-    fun get() : List<Purchase> {
+    fun get(): List<Purchase> {
         return this.purchases
     }
 

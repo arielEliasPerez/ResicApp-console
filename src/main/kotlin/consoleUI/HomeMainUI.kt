@@ -6,15 +6,18 @@ import data.Purchase
 
 object HomeMainUI {
     fun showHomeMain() {
-        println("""
+        println(
+            """
             
             ╔═══════════════════════════════════════════════════╗
             ║                 ¡¡¡ RESIC APP !!!                 ║
             ╚═══════════════════════════════════════════════════╝
             
-        """.trimIndent())
+        """.trimIndent()
+        )
 
-        print("""
+        print(
+            """
             Elija una opción:
                 1 --> Ver catálogo de Libros
                 2 --> Ver catálogo de Música
@@ -22,14 +25,14 @@ object HomeMainUI {
                 0 --> Salir
             
             --> 
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     fun validateOption(lower: Int, upper: Int): Int {
         var option: Int = enterAnInteger()
-        //var option: Int = readln().toInt()
 
-        while (option !in lower..upper){
+        while (option !in lower..upper) {
             print("¡Opción inválida! Intente otra vez --> ")
             option = enterAnInteger()
         }
@@ -42,32 +45,32 @@ object HomeMainUI {
             try {
                 return readln().toInt()
             } catch (e: NumberFormatException) {
-                print("¡Opción inválida! Intente otra vez:\n-->")
+                print("¡Opción inválida! Intente otra vez --> ")
             }
-
         }
     }
 
     fun showListProduct(objects: List<Any>, productType: ProductType) {
-        when(productType){
-            ProductType.BOOK -> println("\n\n--------------------------------- LIBROS ---------------------------------\n")
-            ProductType.DISC -> println("\n\n--------------------------------- MÚSICA ---------------------------------\n")
+        when (productType) {
+            ProductType.BOOK -> println("\n\n====================================================== LIBROS ======================================================\n")
+            ProductType.DISC -> println("\n\n====================================================== MÚSICA ======================================================\n")
         }
 
-        for((i, element) in objects.withIndex())
-            println("${i+1} --> $element")
+        for ((i, element) in objects.withIndex())
+            println("${i + 1} --> $element")
 
         println("0 --> Volver")
         print("\nSeleccione el nro de libro a comprar--> ")
     }
 
     fun showPurchaseHistoryList(purchases: List<Purchase>, products: List<Product>) {
-        println("\n\n------------------------------->> HISTORIAL DE COMPRAS <<-------------------------------\n")
+        println("\n\n====================================================== HISTORIAL DE COMPRAS ======================================================\n")
 
-        for(purchase in purchases){
+        for (purchase in purchases) {
             val product = products.find { it.id == purchase.productId }
             if (product != null) {
-                println("""
+                println(
+                    """
                         ${product.name}
                             - Fecha de compra:              ${purchase.createdDate}
                             - Tipo de Producto:             ${product.type}
@@ -75,13 +78,14 @@ object HomeMainUI {
                             - Autor del Producto:           ${product.author}
                             - Logo del Producto:            ${product.logo}
                             - Clasificación:                ${product.clasification}
-                            - Precio del producto:          $${product.price}
-                            - Monto Comisión adicional:     $${purchase.amount-product.price}
+                            - Precio del producto:          $ ${product.price}
+                            - Monto Comisión adicional:     $ ${purchase.amount.minus(product.price)}
                             
-                            - Monto total pagado:           $${purchase.amount}
+                            - Monto total pagado:           $ ${purchase.amount}
                             
                         --------------------------------------------------------------
-                    """.trimIndent())
+                    """.trimIndent()
+                )
             }
         }
 

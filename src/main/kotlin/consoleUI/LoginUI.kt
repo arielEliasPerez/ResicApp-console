@@ -2,21 +2,24 @@ package consoleUI
 
 object LoginUI {
     fun showWelcome() {
-        println("""
+        println(
+            """
+            
             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
                           ¡¡¡ BIENVENIDO !!!
             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
             
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     fun requestUserName(): String {
-        print("► Por favor ingrese su NickName: ")
+        print("► Ingrese su NickName: ")
         return readln()
     }
 
     fun requestPassword(): String {
-        print("\n► Por favor ingrese la contraseña: ")
+        print("\n► Ingrese la contraseña: ")
         return readln()
     }
 
@@ -26,15 +29,17 @@ object LoginUI {
 
     fun confirmRetry(): Boolean {
         println("Desea intentarlo otra vez?")
-        print("""
+        print(
+            """
             s --> Si
             n --> No
             
-            -->
-        """.trimIndent())
+            --> 
+        """.trimIndent()
+        )
         var answer = readln().first()
 
-        while(!answer.equals('s', true) && !answer.equals('n', true)){
+        while (!answer.equals('s', true) && !answer.equals('n', true)) {
             print("¡Respuesta erronea! Intente otra vez --> ")
             answer = readln()[0]
         }
