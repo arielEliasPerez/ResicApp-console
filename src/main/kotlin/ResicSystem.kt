@@ -92,7 +92,7 @@ object ResicSystem {
 
 
     private fun viewPurchaseHistory() {
-        val purchaseHistory: List<Purchase> = PurchaseRepository.get().filter { it.userId == this.user!!.id }
+        val purchaseHistory: List<Purchase> = PurchaseRepository.getByUserId(user!!.id)
 
         HomeMainUI.showPurchaseHistoryList(purchaseHistory, ProductRepository.get())
     }
