@@ -2,7 +2,7 @@ package prices
 
 import java.time.LocalTime
 
-class SilverPrice(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+class SilverPriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
     override var commission = 3.0
 
     override fun calculateTotalPrice(): Double {

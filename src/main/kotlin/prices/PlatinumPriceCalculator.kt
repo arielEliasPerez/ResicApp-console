@@ -3,7 +3,7 @@ package prices
 import java.time.DayOfWeek
 import java.time.LocalDate
 
-class PlatinumPrice(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+class PlatinumPriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
     override var commission = 0.75
 
     override fun calculateTotalPrice(): Double {
