@@ -2,7 +2,7 @@ package prices
 
 import java.time.LocalTime
 
-class SilverPriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+class SilverPriceCalculator(originPrice: Double) : PriceCalculator(originPrice) {
     
     companion object{
         val MINIMUM_TIME: LocalTime = LocalTime.of(15, 0)

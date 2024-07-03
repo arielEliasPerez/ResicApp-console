@@ -3,7 +3,7 @@ package prices
 import java.time.DayOfWeek
 import java.time.LocalDate
 
-class PlatinumPriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+class PlatinumPriceCalculator(originPrice: Double) : PriceCalculator(originPrice) {
 
     companion object{
         val SATURDAY = DayOfWeek.SATURDAY

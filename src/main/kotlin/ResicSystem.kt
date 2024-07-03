@@ -71,17 +71,17 @@ object ResicSystem {
 
     private fun buy(product: Product) {
         val productPrice: PriceCalculator = when (product.clasification) {
-            ProductClasification.GOLD -> GoldPriceCalculator(product.id, product.price)
-            ProductClasification.SILVER -> SilverPriceCalculator(product.id, product.price)
-            ProductClasification.PLATINUM -> PlatinumPriceCalculator(product.id, product.price)
-            else -> BronzePriceCalculator(product.id, product.price)
+            ProductClasification.GOLD -> GoldPriceCalculator(product.price)
+            ProductClasification.SILVER -> SilverPriceCalculator(product.price)
+            ProductClasification.PLATINUM -> PlatinumPriceCalculator(product.price)
+            else -> BronzePriceCalculator(product.price)
         }
 
         PurchaseUI.showPurchaseProcess(this.user!!, product, productPrice)
 
         if (!PurchaseUI.confirmPurchase()) return   //No confirma compra
 
-        val successfulPurchase = PurchaseRepository.processPurchase(productPrice, this.user!!)
+        val successfulPurchase = PurchaseRepository.processPurchase(productPrice, product.id, this.user!!)
 
         if (successfulPurchase) {
             PurchaseUI.showSuccessfulPurchase()

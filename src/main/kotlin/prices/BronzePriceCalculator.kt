@@ -1,6 +1,6 @@
 package prices
 
-class BronzePriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+class BronzePriceCalculator(originPrice: Double) : PriceCalculator(originPrice) {
     override var commission = 0.0
 
     override fun calculateTotalPrice(): Double {
