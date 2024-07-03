@@ -3,6 +3,12 @@ package prices
 import java.time.LocalTime
 
 class SilverPriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+    
+    companion object{
+        val MINIMUM_TIME: LocalTime = LocalTime.of(15, 0)
+        val MAXIMUM_TIME: LocalTime = LocalTime.of(22, 30)
+    }
+    
     override var commission = 3.0
 
     override fun calculateTotalPrice(): Double {
@@ -16,9 +22,8 @@ class SilverPriceCalculator(productID: Long, originPrice: Double) : PriceCalcula
 
     private fun isValidTime(): Boolean {
         val currentTime = LocalTime.now()
-        val minimumTime = LocalTime.of(15, 0)
-        val maximumTime = LocalTime.of(22, 30)
-        val isTimeValid = currentTime in minimumTime..maximumTime
+        
+        val isTimeValid = currentTime in MINIMUM_TIME..MAXIMUM_TIME
 
         return isTimeValid
     }
