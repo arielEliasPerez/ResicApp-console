@@ -60,7 +60,7 @@ object HomeMainUI {
             println("${i + 1} --> $element")
 
         println("0 --> Volver")
-        print("\nSeleccione el nro de libro a comprar--> ")
+        print("\nSeleccione el nro de producto a comprar--> ")
     }
 
     fun showPurchaseHistoryList(purchases: List<Purchase>, products: List<Product>) {
