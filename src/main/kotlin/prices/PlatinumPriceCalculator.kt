@@ -4,6 +4,12 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 
 class PlatinumPriceCalculator(productID: Long, originPrice: Double) : PriceCalculator(productID, originPrice) {
+
+    companion object{
+        val SATURDAY = DayOfWeek.SATURDAY
+        val SUNDAY = DayOfWeek.SUNDAY
+    }
+
     override var commission = 0.75
 
     override fun calculateTotalPrice(): Double {
@@ -16,9 +22,7 @@ class PlatinumPriceCalculator(productID: Long, originPrice: Double) : PriceCalcu
 
     private fun isValidDate(): Boolean {
         val currentDay = LocalDate.now().dayOfWeek
-        val saturday = DayOfWeek.SATURDAY
-        val sunday = DayOfWeek.SUNDAY
 
-        return currentDay == saturday || currentDay == sunday
+        return currentDay == SATURDAY || currentDay == SUNDAY
     }
 }
